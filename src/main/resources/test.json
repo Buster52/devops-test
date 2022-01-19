@@ -1,0 +1,35 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "134798",
+  "self": "http://devops/jira/rest/agile/1.0/issue/134798",
+  "key": "CPCI-911",
+  "fields": {
+    "issuetype": {
+      "self": "http://devops/jira/rest/api/2/issuetype/10300",
+      "id": "10300",
+      "description": "Investigación aclaración funcional o técnica",
+      "iconUrl": "http://devops/jira/secure/viewavatar?size=xsmall&avatarId=10308&avatarType=issuetype",
+      "name": "Spike",
+      "subtask": false,
+      "avatarId": 10308
+    }
+  },
+  "fixVersions": [
+    {
+      "self": "http://devops/jira/rest/api/2/version/11409",
+      "id": "11409",
+      "description": "Crear automatizaciones para usuarios del CPCI que permiten realizar tareas de manera automática. Meta trimestre 25 nuevas.",
+      "name": "T- MVP - Autoservicio en ARES - CPCI",
+      "archived": false,
+      "released": false,
+      "releaseDate": "2021-12-31"
+    }
+  ],
+  "status": {
+    "self": "http://devops/jira/rest/api/2/status/10002",
+    "description": "",
+    "iconUrl": "http://devops/jira/",
+    "name": "Listo",
+    "id": "10002"
+  }
+}
