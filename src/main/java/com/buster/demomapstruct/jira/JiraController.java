@@ -20,6 +20,6 @@ public class JiraController {
     public String getIssues() {
         log.info("Call service");
         //JiraDTO jiraDTO = jiraService.getIssue();
-	return "Hola mundo!";
+	return "Test de pipeline de integracion";
     }
 }
