@@ -19,7 +19,7 @@ public class JiraController {
     @GetMapping()
     public ResponseEntity<JiraDTO> getIssues() {
         log.info("Call service");
-        JiraDTO jiraDTO = jiraService.getIssue();
-        return ResponseEntity.status(HttpStatus.OK).body(jiraDTO);
+        //JiraDTO jiraDTO = jiraService.getIssue();
+        return ResponseEntity.status(HttpStatus.OK).body("Hola mundo!");
     }
 }
