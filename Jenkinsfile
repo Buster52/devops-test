@@ -6,13 +6,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo env.commit_message
+                echo ${env.commit_message}
                 sh 'mvn clean install'
             }
         }
         stage('Email') {
             steps {
-                emailext body: 'Commit: env.commit_message',
+                emailext body: 'Commit: ${env.commit_message}',
             subject: '[Jenkins] Job Execution',
             to: 'gonzalezf.e@outlook.com'
             }
