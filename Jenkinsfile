@@ -12,13 +12,11 @@ pipeline {
         }
         stage('Email') {
             steps {
-                mailRecipients = 'gonzalezf.e@outlook.com'
-                jobStatus = currentBuild.currentResult
                 env.PROJNAME = 'devops-test'
                 echo "projname is ${PROJNAME}"
                 emailext body: 'Commit: env.commit_message',
-            subject: "[Jenkins] ${jobStatus}",
-            to: "${mailRecipients}"
+            subject: "[Jenkins] Job Execution",
+            to: "gonzalezf.e@outlook.com"
             }
         }
     }
