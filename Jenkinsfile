@@ -1,4 +1,5 @@
 pipeline {
+    def commit_message;
     agent any
     triggers {
         pollSCM '* * * * *'
@@ -6,13 +7,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "${env.commit_message}"
+                commit_message = echo "${env.commit_message}"
+                echo ${commit_message}
                 sh 'mvn clean install'
             }
         }
         stage('Email') {
             steps {
-                emailext body: 'Commit: "${env.commit_message}"',
+                emailext body: 'Commit: ${commit_message}',
             subject: '[Jenkins] Job Execution',
             to: 'gonzalezf.e@outlook.com'
             }
