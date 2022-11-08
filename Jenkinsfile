@@ -1,14 +1,16 @@
 pipeline {
-    def commit_message;
     agent any
     triggers {
         pollSCM '* * * * *'
     }
+    environment {
+        commit_message = "${env.commit_message}"
+    }
     stages {
         stage('Build') {
             steps {
-                commit_message = echo "${env.commit_message}"
-                echo ${commit_message}
+                echo "env: ${env.commit_message}"
+                echo "global: ${commit_message}"
                 sh 'mvn clean install'
             }
         }
