@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Email') {
             steps {
-                emailext body: 'Commit: ${env.commit_message}',
+                emailext body: 'Commit: "${env.commit_message}"',
             subject: '[Jenkins] Job Execution',
             to: 'gonzalezf.e@outlook.com'
             }
