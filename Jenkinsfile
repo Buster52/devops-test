@@ -12,8 +12,8 @@ pipeline {
         }
         stage('Email') {
             steps {
-                def mailRecipients = 'gonzalezf.e@outlook.com'
-                def jobStatus = currentBuild.currentResult
+                mailRecipients = 'gonzalezf.e@outlook.com'
+                jobStatus = currentBuild.currentResult
                 env.PROJNAME = 'devops-test'
                 echo "projname is ${PROJNAME}"
                 emailext body: 'Commit: env.commit_message',
