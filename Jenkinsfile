@@ -16,7 +16,8 @@ pipeline {
         }
         stage('Email') {
             steps {
-                emailext body: """Commit:  <table>
+                emailext mimeType: 'text/html',
+                body: """Commit:  <table>
 <thead>
   <tr>
     <th>Product</th>
