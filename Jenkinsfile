@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo ${env.commit_message}
+                echo "${env.commit_message}"
                 sh 'mvn clean install'
             }
         }
