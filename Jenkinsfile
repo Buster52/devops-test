@@ -24,7 +24,10 @@ def mavenScan(){
 	  sh """
 		mvn sonar:sonar \
 		-Dsonar.sources=src/main \
-		-Dsonar.sourceEncoding=UTF-8
+		-Dsonar.sourceEncoding=UTF-8 \
+		-Dsonar.pullrequest.key=${prID} \
+		-Dsonar.pullrequest.branch=${sourceBranch} \
+		-Dsonar.pullrequest.base=master
 	  """
   }
 }
