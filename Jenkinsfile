@@ -11,9 +11,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                #sh 'mvn clean install'
 				echo "build stage"
             }
         }
     }
+}
+
+def mavenScan(){
+  withSonarQubeEnv('SonarServ'){
+	mvn sonar:sonar -Dsonar.source=sr/main -Dsonar.sourceEncoding=UTF-8
+  }
 }
