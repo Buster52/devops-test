@@ -19,6 +19,11 @@ pipeline {
 
 def mavenScan(){
   withSonarQubeEnv('SonarServ'){
-	mvn sonar:sonar -Dsonar.sources=sr/main -Dsonar.sourceEncoding=UTF-8
+	sh "mvn clean compile"
+	  sh """
+		mvn sonar:sonar \
+		-Dsonar.sources=src/main \
+		-Dsonar.sourceEncoding=UTF-8
+	  """
   }
 }
