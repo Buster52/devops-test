@@ -25,7 +25,6 @@ def mavenScan(){
 		mvn sonar:sonar \
 		-Dsonar.sources=src/main \
 		-Dsonar.sourceEncoding=UTF-8 \
-		-Dsonar.base.branch=master
 	  """
   }
 }
