@@ -7,24 +7,14 @@ pipeline {
         repo = "${env.repo}"
         commit_message = "${env.commit_message}"
         author = "${env.author}"
+        funciones = load 'funciones.groovy'
     }
     stages {
         stage('Build') {
             steps {
-				echo "build stage"
-				mavenScan()
+                echo 'build stage'
+                funciones.mavenScan()
             }
         }
     }
-}
-
-def mavenScan(){
-  withSonarQubeEnv('SonarServ'){
-	sh "mvn clean compile"
-	  sh """
-		mvn sonar:sonar \
-		-Dsonar.sources=src/main \
-		-Dsonar.sourceEncoding=UTF-8 \
-	  """
-  }
 }
