@@ -11,9 +11,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+              echo 'build stage'
+              script{
                 def funciones = load 'funciones.groovy'
-                echo 'build stage'
                 funciones.mavenScan()
+              }
             }
         }
     }
