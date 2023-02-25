@@ -1,4 +1,3 @@
-funciones = load 'funciones.groovy'
 pipeline {
     agent any
     triggers {
@@ -12,6 +11,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                def funciones = load 'funciones.groovy'
                 echo 'build stage'
                 funciones.mavenScan()
             }
