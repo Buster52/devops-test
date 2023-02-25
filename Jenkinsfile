@@ -1,3 +1,4 @@
+funciones = load 'funciones.groovy'
 pipeline {
     agent any
     triggers {
@@ -7,7 +8,6 @@ pipeline {
         repo = "${env.repo}"
         commit_message = "${env.commit_message}"
         author = "${env.author}"
-        funciones = load 'funciones.groovy'
     }
     stages {
         stage('Build') {
