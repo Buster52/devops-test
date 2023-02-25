@@ -8,3 +8,4 @@ def mavenScan(){
 	  """
   }
 }
+return this
