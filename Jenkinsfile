@@ -24,6 +24,7 @@ pipeline {
 			  echo 'Check analysis status'
 			  def analysisStatus = sh(returnStatus: true, script: 'curl -s -u squ_fdff963a578f81664d7afd1e7c37651791ec111b: "http://192.168.0.3:9000/api/qualitygates/project_status?projectKey=mapstruct" | jq -r ".projectStatus.status"')
 			  def type = analysisStatus.getClass()
+			  echo "value of analysisStatus ${analysisStatus}"
 			  echo "type ${type}"
 				if( analysisStatus == "OK" ){
 				  echo 'Quality gate success'
