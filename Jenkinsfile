@@ -1,6 +1,3 @@
-script{
-	def funciones = load 'funciones.groovy'
-}
 pipeline {
     agent any
     triggers {
@@ -11,6 +8,9 @@ pipeline {
         commit_message = "${env.commit_message}"
         author = "${env.author}"
     }
+	script{
+		def funciones = load 'funciones.groovy'
+	}
     stages {
         stage('Sonar scan') {
             steps {
