@@ -10,7 +10,7 @@ def mavenScan(){
   }
 }
 
-def sendEmail(repo, commit_message, author, buildNumber){
+def sendEmail(repo, commit_message, author, buildNumber, buildURL){
  emailext mimeType: 'text/html',
             body: """
                     <style type="text/css">
@@ -37,6 +37,7 @@ def sendEmail(repo, commit_message, author, buildNumber){
                     </tr>
                     </tbody>
                     </table>
+                    <p>${buildURL}console</a>
                 """,
         subject: "[Jenkins] Job Execution ${buildNumber}",
         to: 'gonzalezf.e@outlook.com'

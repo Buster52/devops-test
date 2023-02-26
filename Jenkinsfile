@@ -8,11 +8,11 @@ pipeline {
         commit_message = "${env.commit_message}"
         author = "${env.author}"
 		buildNumber = "${BUILD_NUMBER}"
+		buildURL = "${BUILD_URL}"
     }
     stages {
         stage('Sonar scan') {
             steps {
-				sh 'printenv'
                 echo 'Scan code with sonar'
                 script {
                     def funciones = load 'funciones.groovy'
@@ -45,7 +45,7 @@ pipeline {
         success {
             script {
                 def funciones = load 'funciones.groovy'
-                funciones.sendEmail(repo, commit_message, author, buildNumber)
+                funciones.sendEmail(repo, commit_message, author, buildNumber, buildURL)
             }
         }
     }
