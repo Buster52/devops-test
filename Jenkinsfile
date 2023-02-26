@@ -22,8 +22,8 @@ pipeline {
 		  steps{
 			script{
 			  echo 'Check analysis status'
-			  def analysisStatus = sh(returnStatus: true, script: 'curl -s -u squ_fdff963a578f81664d7afd1e7c37651791ec111b: "http://192.168.0.3:9000/api/qualitygates/project_status?projectKey=mapstruct" | jq -r ".projectStatus.status"')
-				if("${analysisStatus}" == "OK"){
+			  def analysisStatus = sh(returnStatus: true, script: 'curl -s -u squ_fdff963a578f81664d7afd1e7c37651791ec111b: "http://192.168.0.3:9000/api/qualitygates/project_status?projectKey=mapstruct" | jq ".projectStatus.status"')
+				if(analysisStatus == "OK"){
 				  echo 'Quality gate success'
 				}else{
 				  currentBuild.result = 'FAILURE'
