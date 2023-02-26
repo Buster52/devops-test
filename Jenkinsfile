@@ -27,6 +27,7 @@ pipeline {
 				  currentBuild.result = 'FAILURE'
                   error('Pipeline aborted due to quality gate failure.')
 				}
+				echo 'Quality gate success'
 			}
 		  }
 		}
