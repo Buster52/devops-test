@@ -1,8 +1,5 @@
 pipeline {
     agent any
-	  node{
-			def funciones = load 'funciones.groovy'
-	  }
     triggers {
         pollSCM '* * * * *'
     }
@@ -15,7 +12,10 @@ pipeline {
         stage('Sonar scan') {
             steps {
                 echo 'Scan code with sonar'
-				funciones.mavenScan()
+				  script{
+					  def funciones = load 'funciones.groovy'
+					  funciones.mavenScan()
+				  }
             }
         }
 		stage('Check Sonar results'){
@@ -39,7 +39,10 @@ pipeline {
     }
 	post{
 	  success{
-		  funciones.sendEmail(repo, commit_message, author)
+			script{
+				def funciones = load 'funciones.groovy'
+				funciones.sendEmail(repo, commit_message, author)
+			}
 	  }
 	}
 }
