@@ -21,7 +21,7 @@ pipeline {
         stage('Check Sonar results') {
             steps {
                 script {
-                    echo 'Check analysis status'
+                    echo 'Check sonar analysis status'
                     def analysisStatus = sh(returnStdout: true, script: 'curl -s -u squ_fdff963a578f81664d7afd1e7c37651791ec111b: "http://192.168.0.3:9000/api/qualitygates/project_status?projectKey=mapstruct" | jq -r ".projectStatus.status"')
                     if (analysisStatus.trim() == 'OK') {
                         echo 'Quality gate success'
