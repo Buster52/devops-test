@@ -1,3 +1,6 @@
+script{
+	def funciones = load 'funciones.groovy'
+}
 pipeline {
     agent any
     triggers {
@@ -9,14 +12,34 @@ pipeline {
         author = "${env.author}"
     }
     stages {
-        stage('Build') {
+        stage('Sonar scan') {
             steps {
-                echo 'build stage'
-                script{
-                    def funciones = load 'funciones.groovy'
-                    funciones.mavenScan()
-              }
+                echo 'Scan code with sonar'
+				funciones.mavenScan()
             }
         }
+		stage('Check Sonar results'){
+		  steps{
+			script{
+			  echo 'Check analysis status'
+			  def analysisStatus = sh(returnStatus: true, script: 'curl -s -u squ_fdff963a578f81664d7afd1e7c37651791ec111b: "http://192.168.0.3:9000/api/qualitygates/project_status?projectKey=mapstruct" | jq -r ".projectStatus.status"')
+				if(analysisStatus != 'OK'){
+				  currentBuild.result = 'FAILURE'
+                  error('Pipeline aborted due to quality gate failure.')
+				}
+			}
+		  }
+		}
+		stage('Build app'){
+			steps{
+				echo 'Building application'
+				sh 'mvn clean package'
+			}
+		}
     }
+	post{
+	  success{
+		  funciones.sendEmail(repo, commit_message, author)
+	  }
+	}
 }
