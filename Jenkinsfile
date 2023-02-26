@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Sonar scan') {
             steps {
+				sh 'printenv'
                 echo 'Scan code with sonar'
                 script {
                     def funciones = load 'funciones.groovy'
