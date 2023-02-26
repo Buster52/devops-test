@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	  node{
+			def funciones = load 'funciones.groovy'
+	  }
     triggers {
         pollSCM '* * * * *'
     }
@@ -8,9 +11,6 @@ pipeline {
         commit_message = "${env.commit_message}"
         author = "${env.author}"
     }
-	script{
-		def funciones = load 'funciones.groovy'
-	}
     stages {
         stage('Sonar scan') {
             steps {
