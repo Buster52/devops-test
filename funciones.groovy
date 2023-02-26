@@ -37,7 +37,7 @@ def sendEmail(repo, commit_message, author, buildNumber, buildURL){
                     </tr>
                     </tbody>
                     </table>
-                    <p>${buildURL}console</a>
+                    <p>Log de build: ${buildURL}console</a>
                 """,
         subject: "[Jenkins] Job Execution ${buildNumber}",
         to: 'gonzalezf.e@outlook.com'
