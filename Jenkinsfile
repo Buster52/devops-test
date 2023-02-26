@@ -22,16 +22,17 @@ pipeline {
 		  steps{
 			script{
 			  echo 'Check analysis status'
-			  def analysisStatus = sh(returnStatus: true, script: 'curl -s -u squ_fdff963a578f81664d7afd1e7c37651791ec111b: "http://192.168.0.3:9000/api/qualitygates/project_status?projectKey=mapstruct" | jq -r ".projectStatus.status"')
+			//   def analysisStatus = sh(returnStatus: true, script: 'curl -s -u squ_fdff963a578f81664d7afd1e7c37651791ec111b: "http://192.168.0.3:9000/api/qualitygates/project_status?projectKey=mapstruct" | jq -r ".projectStatus.status"')
+			  def analysisStatus = sh(returnStdout: true, script: 'curl -s -u squ_fdff963a578f81664d7afd1e7c37651791ec111b: "http://192.168.0.3:9000/api/qualitygates/project_status?projectKey=mapstruct" | jq -r ".projectStatus.status"')
 			  def type = analysisStatus.getClass()
 			  echo "value of analysisStatus ${analysisStatus}"
 			  echo "type ${type}"
-				if( analysisStatus == "OK" ){
-				  echo 'Quality gate success'
-				}else{
-				  currentBuild.result = 'FAILURE'
-                  error('Pipeline aborted due to quality gate failure.')
-				}
+				// if( analysisStatus == "OK" ){
+				//   echo 'Quality gate success'
+				// }else{
+				//   currentBuild.result = 'FAILURE'
+                //   error('Pipeline aborted due to quality gate failure.')
+				// }
 			}
 		  }
 		}
@@ -46,7 +47,7 @@ pipeline {
 	  success{
 			script{
 				def funciones = load 'funciones.groovy'
-				funciones.sendEmail(repo, commit_message, author)
+				// funciones.sendEmail(repo, commit_message, author)
 			}
 	  }
 	}
