@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         }
+		stage('Wait for SonarQube Analysis') {
+			steps {
+				script {
+					sleep time: 1, unit: 'MINUTES'
+				}
+			}
+		}
         stage('Check Sonar results') {
             steps {
                 script {
