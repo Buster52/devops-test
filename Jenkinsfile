@@ -44,11 +44,20 @@ pipeline {
         stage('Build app') {
             steps {
                 echo 'Building application'
-                sh 'mvn -B -ntp clean package'
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+        stage('Testing'){
+            steps{
+                echo 'Testing application'
+                sh 'mvn clean test'
             }
         }
     }
     post {
+        always{
+            junit 'target/surefire-reports/*.xml'
+        }
         success {
             script {
                 def funciones = load 'funciones.groovy'
