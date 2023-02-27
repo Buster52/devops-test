@@ -25,7 +25,7 @@ import com.buster.demomapstruct.jira.JiraService;
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(value = JiraController.class)
 @WithMockUser
-public class JiraControllerTest {
+class JiraControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -44,7 +44,7 @@ public class JiraControllerTest {
             .build();
 
     @Test
-    public void getIssues() throws Exception {
+    void getIssues() throws Exception {
         Mockito.when(jiraService.getIssue()).thenReturn(mockIssue);
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/v1/jira/").accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();

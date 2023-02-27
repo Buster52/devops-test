@@ -1,8 +1,14 @@
 package com.buster.demomapstruct.jira;
 
 import java.io.File;
+import java.lang.module.Configuration;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Objects;
 import java.util.Optional;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import com.buster.demomapstruct.jira.models.Root;
@@ -23,7 +29,8 @@ public class JiraService {
         Root root = new Root();
         JiraDTO jira = new JiraDTO();
         try {
-            File json = new File("D:/gonza/Documents/java-projects/demo-mapstruct/src/main/resources/test.json");
+            Resource resource = new ClassPathResource("test.json");
+            File json = resource.getFile();
             root = mapper.readValue(
                     json,
                     Root.class);

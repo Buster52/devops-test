@@ -17,8 +17,6 @@ public class JiraController {
     @GetMapping("/")
     public JiraDTO getIssues() {
         log.info("Call service");
-        JiraDTO jiraDTO = jiraService.getIssue();
-        return jiraDTO;
-	//return "Test de pipeline de integracion con notificacion a slack";
+        return jiraService.getIssue();
     }
 }

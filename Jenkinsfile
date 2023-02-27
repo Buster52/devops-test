@@ -11,6 +11,19 @@ pipeline {
 		buildURL = "${BUILD_URL}"
     }
     stages {
+        stage('Build app') {
+            steps {
+                echo "Branch => ${env.branch}"
+                echo 'Building application'
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+        stage('Testing'){
+            steps{
+                echo 'Testing application'
+                sh 'mvn clean test'
+            }
+        }
         stage('Sonar scan') {
             steps {
                 echo 'Scan code with sonar'
@@ -39,18 +52,6 @@ pipeline {
                         error('Pipeline aborted due to quality gate failure.')
                     }
                 }
-            }
-        }
-        stage('Build app') {
-            steps {
-                echo 'Building application'
-                sh 'mvn clean install -DskipTests'
-            }
-        }
-        stage('Testing'){
-            steps{
-                echo 'Testing application'
-                sh 'mvn clean test'
             }
         }
     }
