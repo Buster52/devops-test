@@ -68,5 +68,8 @@ pipeline {
                 funciones.sendEmail(repo, commit_message, author, buildNumber, buildURL)
             }
         }
+        cleanup{
+            deleteDir()
+        }
     }
 }

@@ -29,11 +29,10 @@ public class JiraService {
                     Root.class);
             jira = jiraMapper.toDTO(root);
 
-            Optional.of(jira).orElseThrow(() -> new Exception("Objeto vacio"));
+            return Optional.of(jira).orElseThrow(() -> new Exception("Objeto vacio"));
 
-            return jira;
         } catch (Exception e) {
-            log.error("Error {}", e);
+            log.error("Error {}", e.getMessage());
         }
         return jira;
     }
