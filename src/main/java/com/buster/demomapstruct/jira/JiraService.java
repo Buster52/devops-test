@@ -22,6 +22,8 @@ public class JiraService {
         ObjectMapper mapper = new ObjectMapper();
         Root root = new Root();
         JiraDTO jira = new JiraDTO();
+        String user = "admin";
+        String password = "1234";
         try {
             File json = new File("D:/gonza/Documents/java-projects/demo-mapstruct/src/main/resources/test.json");
             root = mapper.readValue(
