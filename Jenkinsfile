@@ -56,7 +56,11 @@ pipeline {
     }
     post {
         always{
-            junit 'target/surefire-reports/*.xml'
+            script{
+                if ( currentBuild.result != 'FAILURE' ){
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
         }
         success {
             script {
